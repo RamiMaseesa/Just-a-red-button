@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://brxc7l44qhwhe"]
+[gd_scene load_steps=10 format=3 uid="uid://brxc7l44qhwhe"]
 
 [ext_resource type="PackedScene" uid="uid://dlameghuqt2sc" path="res://Art/Models/Pillar.fbx" id="1_tficu"]
 [ext_resource type="PackedScene" uid="uid://qiucsaseigb" path="res://Art/Models/Button.fbx" id="2_nqa25"]
+[ext_resource type="PackedScene" uid="uid://yl6qhyow01cj" path="res://Art/Models/Room.fbx" id="3_o74vl"]
+[ext_resource type="PackedScene" uid="uid://dyj2csyv0mnke" path="res://Prefabs/Player.tscn" id="4_f8a4b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xpivr"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,6 +18,12 @@ sky = SubResource("Sky_tg0uw")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_eeedg"]
+size = Vector3(0.0404205, 0.030159, 0.00147656)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rhhy5"]
+size = Vector3(0.0200424, 0.0301208, 0.001)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -25,10 +33,71 @@ environment = SubResource("Environment_5t88h")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-
 [node name="Pillar" parent="." instance=ExtResource("1_tficu")]
 transform = Transform3D(0.419511, 0, 0, 0, 0.419511, 0, 0, 0, 0.419511, -0.221664, 0, 1.62569)
 
 [node name="Button" parent="." instance=ExtResource("2_nqa25")]
 transform = Transform3D(0.294867, 0, 0, 0, 0.294867, 0, 0, 0, 0.294867, -0.217022, 2.42512, 1.60341)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("4_f8a4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3421, 3.78654, -5.23075)
+
+[node name="Room" parent="." instance=ExtResource("3_o74vl")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.261, 0, -5.47588)
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Room/Plane" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0299619, -0.004, -0.00087156)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Plane/RigidBody3D2"]
+transform = Transform3D(1, -1.7053e-13, 4.19052e-14, 5.74403e-11, 1, 5.68434e-14, 4.99908e-14, -1.84741e-13, 1, -0.0295519, 0.00480011, 0.0213143)
+shape = SubResource("BoxShape3D_eeedg")
+
+[node name="Skeleton3D" parent="Room/Armature" index="0"]
+bones/0/rotation = Quaternion(0.999048, 0, 0, -0.0436195)
+bones/3/rotation = Quaternion(0.477714, -0.521334, 0.521334, 0.477714)
+bones/6/rotation = Quaternion(0.477714, 0.521334, -0.521334, 0.477714)
+bones/10/rotation = Quaternion(-0.0436194, 0, 0, 0.999048)
+bones/13/rotation = Quaternion(0.0436194, -4.36698e-08, -1.90666e-09, 0.999048)
+bones/16/position = Vector3(1.19209e-09, 0.015, 0.015)
+
+[node name="Plane_001" parent="Room/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871562, 0, 0.0871562, 0.996195, -0.008, -0.00996195, -0.000871561)
+bone_idx = 1
+
+[node name="Plane_003" parent="Room/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.996195, 3.51979e-07, 0.0871558, 3.57628e-07, 1, 1.19209e-07, -0.0871559, 1.0163e-08, -0.996195, -0.02, 0.015, -5.19489e-11)
+bone_idx = 4
+
+[node name="Plane_004" parent="Room/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.996195, -3.62369e-07, 0.0871559, 3.57628e-07, 1, 1.19209e-07, -0.0871559, -1.08593e-07, 0.996195, 0.0299619, 0.01, -0.00087156)
+bone_idx = 7
+
+[node name="Plane_004" parent="Room/Armature/Skeleton3D/Plane_004" index="0"]
+skeleton = NodePath("../..")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Room/Armature/Skeleton3D/Plane_004" index="1"]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Armature/Skeleton3D/Plane_004/RigidBody3D"]
+transform = Transform3D(1, -1.7053e-13, 4.19052e-14, 5.74403e-11, 1, 5.68434e-14, 4.99908e-14, -1.84741e-13, 1, -0.00098028, 0.00511161, -0.000347408)
+shape = SubResource("BoxShape3D_rhhy5")
+
+[node name="Door" parent="Room/Armature/Skeleton3D" index="3"]
+transform = Transform3D(-0.0871555, -4.05914e-07, 0.996195, -1.19209e-07, 1, 4.01339e-07, -0.996195, -1.04783e-07, -0.0871555, 0.0299619, 0.015, -0.00087156)
+bone_idx = 8
+
+[node name="Plane_002" parent="Room/Armature/Skeleton3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, -0.996195, -0.0871556, 0, 0.0871556, -0.996195, -0.008, 0.0399619, -0.000871558)
+bone_idx = 11
+
+[node name="Window" parent="Room/Armature/Skeleton3D" index="5"]
+transform = Transform3D(0.4, 0, 0, 0, -0.0348624, 0.398478, 0, -0.398478, -0.0348624, -0.00394728, 0.0431219, -0.00114802)
+bone_idx = 12
+
+[node name="Plane_005" parent="Room/Armature/Skeleton3D" index="6"]
+transform = Transform3D(1, 1.77636e-15, 0, 1.77636e-15, -1, 8.74228e-08, -7.10543e-15, -8.74228e-08, -1, 1.19209e-09, 0.0659239, -0.00174312)
+bone_idx = 14
+
+[editable path="CharacterBody3D"]
+[editable path="Room"]
