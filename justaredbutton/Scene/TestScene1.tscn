@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://df7o1mbpv0kvm"]
+[gd_scene load_steps=5 format=3 uid="uid://df7o1mbpv0kvm"]
+
+[ext_resource type="PackedScene" uid="uid://dlameghuqt2sc" path="res://Art/Models/Pillar.fbx" id="1_2ir6w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qy4q3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,3 +25,6 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Pillar" parent="." instance=ExtResource("1_2ir6w")]
+transform = Transform3D(0.363351, 0, 0, 0, 0.363351, 0, 0, 0, 0.363351, -0.655298, 0, 3.114)
