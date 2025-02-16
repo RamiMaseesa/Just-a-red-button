@@ -46,9 +46,6 @@ shape = SubResource("ConvexPolygonShape3D_yh5j3")
 mesh = SubResource("PlaneMesh_mlmap")
 skeleton = NodePath("../..")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("2_64p6a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0345621, 0.079334, 1.33808)
-
 [node name="CharacterBody3D2" type="CharacterBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2"]
@@ -56,5 +53,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01765, -2.76334)
 mesh = SubResource("CapsuleMesh_6kwba")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64072, -2.76334)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04832, -2.76334)
 shape = SubResource("ConvexPolygonShape3D_0gtdt")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_64p6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0777941, 0.079334, 1.94229)
