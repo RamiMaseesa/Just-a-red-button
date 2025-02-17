@@ -12,7 +12,7 @@ const BOB_AMP = 0.08
 var t_bob = 0.0
 
 #fov variables
-const BASE_FOV = 90
+const BASE_FOV = 70
 const FOV_CHANGE = 1.5
 
 @onready var head = $Head
@@ -26,7 +26,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 
 func _physics_process(delta: float) -> void:
@@ -56,8 +56,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 1.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 1.0)
 	
 	# head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())

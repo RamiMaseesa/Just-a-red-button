@@ -1,0 +1,151 @@
+[gd_scene load_steps=16 format=3 uid="uid://p1mjifwn0a1i"]
+
+[ext_resource type="Texture2D" uid="uid://bx83kh6vwpi4o" path="res://Art/Materials/white_concrete-2K/2K-concrete_white-diffuse.jpg" id="1_re06w"]
+[ext_resource type="PackedScene" uid="uid://dyj2csyv0mnke" path="res://Prefabs/Player.tscn" id="2_ije5n"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6feu"]
+sky_top_color = Color(0.302485, 0.457751, 0.646002, 1)
+sky_horizon_color = Color(0.635218, 0.649731, 0.705844, 1)
+ground_bottom_color = Color(0.238385, 0.141172, 0.177376, 1)
+ground_horizon_color = Color(0.635218, 0.649731, 0.705844, 1)
+
+[sub_resource type="Sky" id="Sky_x4vtv"]
+sky_material = SubResource("ProceduralSkyMaterial_p6feu")
+
+[sub_resource type="Environment" id="Environment_kpaov"]
+background_mode = 2
+sky = SubResource("Sky_x4vtv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7xrd"]
+albedo_texture = ExtResource("1_re06w")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d1fvo"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v7io5"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulv0v"]
+albedo_texture = ExtResource("1_re06w")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pc8tc"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x121a"]
+points = PackedVector3Array(-0.507937, -0.507937, -0.00793651, 0.507937, 0.507937, 0.00793651, 0.507937, 0.507937, -0.00793651, -0.507937, 0.507937, 0.00793651, 0.507937, -0.507937, 0.00793651, 0.507937, -0.507937, -0.00793651, -0.507937, 0.507937, -0.00793651, -0.507937, -0.507937, 0.00793651)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6151g"]
+albedo_texture = ExtResource("1_re06w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fn6x"]
+albedo_texture = ExtResource("1_re06w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv02h"]
+albedo_texture = ExtResource("1_re06w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hvtf"]
+albedo_texture = ExtResource("1_re06w")
+
+[node name="GameScene" type="Node3D"]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_ije5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.95922, 0.587497, 3.18198)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kpaov")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 25, 0)
+light_color = Color(0.585062, 0.585062, 0.585062, 1)
+light_energy = 0.75
+light_angular_distance = 90.0
+shadow_enabled = true
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="RigidBody3D" parent="Map"]
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Floor"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_j7xrd")
+mesh = SubResource("PlaneMesh_d1fvo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_v7io5")
+
+[node name="Wall1" type="RigidBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -25)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall1"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ulv0v")
+mesh = SubResource("QuadMesh_pc8tc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall1"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Wall2" type="RigidBody3D" parent="Map"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25, 25)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall2"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_6151g")
+mesh = SubResource("QuadMesh_pc8tc")
+skeleton = NodePath("../../Wall2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall2"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Wall3" type="RigidBody3D" parent="Map"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 25, 0)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall3"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2fn6x")
+mesh = SubResource("QuadMesh_pc8tc")
+skeleton = NodePath("../../Wall2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall3"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Wall4" type="RigidBody3D" parent="Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 25, 0)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall4"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cv02h")
+mesh = SubResource("QuadMesh_pc8tc")
+skeleton = NodePath("../../Wall2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall4"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Ceiling" type="RigidBody3D" parent="Map"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 50, 0)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Ceiling"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2hvtf")
+mesh = SubResource("PlaneMesh_d1fvo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ceiling"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_v7io5")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 25, 0)
+light_color = Color(0.585062, 0.585062, 0.585062, 1)
+light_energy = 0.75
+light_angular_distance = 21.82
+shadow_enabled = true

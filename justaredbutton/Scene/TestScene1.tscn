@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://df7o1mbpv0kvm"]
+[gd_scene load_steps=11 format=3 uid="uid://df7o1mbpv0kvm"]
 
+[ext_resource type="Texture2D" uid="uid://dwtriai3yf3wu" path="res://Art/Materials/white_concrete-2K/2K-concrete_white-ao.jpg" id="1_ya6mm"]
 [ext_resource type="PackedScene" uid="uid://dyj2csyv0mnke" path="res://Prefabs/Player.tscn" id="2_64p6a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qy4q3"]
@@ -17,6 +18,9 @@ glow_enabled = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yh5j3"]
 points = PackedVector3Array(5.07738, 0.079334, 5.07738, -5.07738, -0.079334, -5.07738, -5.07738, 0.079334, -5.07738, 5.07738, -0.079334, -5.07738, -5.07738, -0.079334, 5.07738, -5.07738, 0.079334, 5.07738, 5.07738, 0.079334, -5.07738, 5.07738, -0.079334, 5.07738)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8fk8"]
+albedo_texture = ExtResource("1_ya6mm")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mlmap"]
 size = Vector2(10, 10)
@@ -43,6 +47,7 @@ freeze = true
 shape = SubResource("ConvexPolygonShape3D_yh5j3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
+material_override = SubResource("StandardMaterial3D_t8fk8")
 mesh = SubResource("PlaneMesh_mlmap")
 skeleton = NodePath("../..")
 

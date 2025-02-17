@@ -33,6 +33,10 @@ naming/size/mode=0
 naming/size/viewport_height=648
 naming/size/viewport_width=1152
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_left={
