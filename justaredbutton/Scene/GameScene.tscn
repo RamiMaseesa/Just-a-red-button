@@ -61,91 +61,90 @@ light_energy = 0.75
 light_angular_distance = 90.0
 shadow_enabled = true
 
-[node name="Map" type="Node3D" parent="."]
-
-[node name="Floor" type="RigidBody3D" parent="Map"]
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Floor"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_j7xrd")
-mesh = SubResource("PlaneMesh_d1fvo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_v7io5")
-
-[node name="Wall1" type="RigidBody3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -25)
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall1"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_ulv0v")
-mesh = SubResource("QuadMesh_pc8tc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall1"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_x121a")
-
-[node name="Wall2" type="RigidBody3D" parent="Map"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25, 25)
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall2"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_6151g")
-mesh = SubResource("QuadMesh_pc8tc")
-skeleton = NodePath("../../Wall2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall2"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_x121a")
-
-[node name="Wall3" type="RigidBody3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 25, 0)
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall3"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_2fn6x")
-mesh = SubResource("QuadMesh_pc8tc")
-skeleton = NodePath("../../Wall2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall3"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_x121a")
-
-[node name="Wall4" type="RigidBody3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 25, 0)
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Wall4"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_cv02h")
-mesh = SubResource("QuadMesh_pc8tc")
-skeleton = NodePath("../../Wall2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Wall4"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_x121a")
-
-[node name="Ceiling" type="RigidBody3D" parent="Map"]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 50, 0)
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Ceiling"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_2hvtf")
-mesh = SubResource("PlaneMesh_d1fvo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ceiling"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_v7io5")
-
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 25, 0)
 light_color = Color(0.585062, 0.585062, 0.585062, 1)
 light_energy = 0.75
 light_angular_distance = 21.82
 shadow_enabled = true
+
+[node name="WhiteRoom" type="Node3D" parent="."]
+
+[node name="Floor" type="RigidBody3D" parent="WhiteRoom"]
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WhiteRoom/Floor"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_j7xrd")
+mesh = SubResource("PlaneMesh_d1fvo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WhiteRoom/Floor"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_v7io5")
+
+[node name="Wall1" type="RigidBody3D" parent="WhiteRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -25)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WhiteRoom/Wall1"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ulv0v")
+mesh = SubResource("QuadMesh_pc8tc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WhiteRoom/Wall1"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Wall2" type="RigidBody3D" parent="WhiteRoom"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25, 25)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WhiteRoom/Wall2"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_6151g")
+mesh = SubResource("QuadMesh_pc8tc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WhiteRoom/Wall2"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Wall3" type="RigidBody3D" parent="WhiteRoom"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 25, 0)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WhiteRoom/Wall3"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2fn6x")
+mesh = SubResource("QuadMesh_pc8tc")
+skeleton = NodePath("../../Wall2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WhiteRoom/Wall3"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Wall4" type="RigidBody3D" parent="WhiteRoom"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 25, 0)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WhiteRoom/Wall4"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cv02h")
+mesh = SubResource("QuadMesh_pc8tc")
+skeleton = NodePath("../../Wall2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WhiteRoom/Wall4"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x121a")
+
+[node name="Ceiling" type="RigidBody3D" parent="WhiteRoom"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 50, 0)
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WhiteRoom/Ceiling"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2hvtf")
+mesh = SubResource("PlaneMesh_d1fvo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WhiteRoom/Ceiling"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_v7io5")

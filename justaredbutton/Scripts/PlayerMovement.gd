@@ -39,9 +39,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
+		if is_on_floor():
+			speed = SPRINT_SPEED
+		else:
+			speed = SPRINT_SPEED / 2
 	else:
-		speed = WALK_SPEED
+		if is_on_floor():
+			speed = SPRINT_SPEED
+		else:
+			speed = SPRINT_SPEED / 2
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -56,8 +62,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 1.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 1.0)
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 	
 	# head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
