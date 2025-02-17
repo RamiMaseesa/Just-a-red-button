@@ -12,7 +12,7 @@ const BOB_AMP = 0.08
 var t_bob = 0.0
 
 #fov variables
-const BASE_FOV = 90
+const BASE_FOV = 70
 const FOV_CHANGE = 1.5
 
 @onready var head = $Head
@@ -26,7 +26,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 
 func _physics_process(delta: float) -> void:
@@ -39,9 +39,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
+		if is_on_floor():
+			speed = SPRINT_SPEED
+		else:
+			speed = SPRINT_SPEED / 2
 	else:
-		speed = WALK_SPEED
+		if is_on_floor():
+			speed = WALK_SPEED
+		else:
+			speed = WALK_SPEED / 2
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
