@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://727h617h7ta1"]
+
+[ext_resource type="Texture2D" uid="uid://pt243pbfefxh" path="res://Materials/Walls/Wall_AO.jpg" id="1_cod8x"]
+[ext_resource type="Texture2D" uid="uid://calbcx7sv2kn5" path="res://Materials/Walls/Wall_Metallic.jpg" id="2_oi15d"]
+[ext_resource type="Texture2D" uid="uid://dgo2yhy2efsjs" path="res://Materials/Walls/Wall_Normals.jpg" id="3_krw2w"]
+[ext_resource type="Texture2D" uid="uid://domwtpf4mv3te" path="res://Materials/Walls/Wall_Roughness.jpg" id="4_vqn5k"]
+
+[resource]
+albedo_color = Color(1, 0.9425, 0.85, 1)
+metallic = 0.03
+metallic_specular = 0.0
+metallic_texture = ExtResource("2_oi15d")
+roughness_texture = ExtResource("4_vqn5k")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 2.29
+normal_texture = ExtResource("3_krw2w")
+ao_enabled = true
+ao_texture = ExtResource("1_cod8x")
+ao_texture_channel = 4
