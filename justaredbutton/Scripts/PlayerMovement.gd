@@ -45,9 +45,9 @@ func _physics_process(delta: float) -> void:
 			speed = SPRINT_SPEED / 2
 	else:
 		if is_on_floor():
-			speed = SPRINT_SPEED
+			speed = WALK_SPEED
 		else:
-			speed = SPRINT_SPEED / 2
+			speed = WALK_SPEED / 2
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
