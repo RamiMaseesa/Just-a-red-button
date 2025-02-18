@@ -1093,7 +1093,7 @@ bones/17/rotation = Quaternion(0, 0, 0, 1)
 bones/17/scale = Vector3(1, 1, 1)
 
 [node name="Plane_001" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, -0.087156, 0, 0.087156, 0.996195, 5.96046e-10, -0.0099663, -0.000821749)
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871561, 0, 0.0871561, 0.996195, 5.96046e-10, -0.0099663, -0.00082175)
 bone_name = "Plane.001"
 bone_idx = 1
 
@@ -1109,7 +1109,7 @@ freeze = true
 shape = SubResource("BoxShape3D_51smk")
 
 [node name="Plane_003" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
-transform = Transform3D(-0.996195, 0, 0.0871568, 5.96046e-08, 1, 0, -0.0871568, -5.96046e-08, -0.996195, -0.0299663, 0.015, -0.000821759)
+transform = Transform3D(-0.996195, 0, 0.0871569, 5.96046e-08, 1, 0, -0.087157, -5.96046e-08, -0.996195, -0.0299663, 0.015, -0.00082176)
 bone_name = "Plane.003"
 bone_idx = 4
 
@@ -1126,7 +1126,7 @@ transform = Transform3D(1, -2.27374e-13, -4.08473e-13, 0, 1, 0, -3.72562e-09, -7
 shape = SubResource("BoxShape3D_gb42y")
 
 [node name="Plane_004" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
-transform = Transform3D(0.996195, 0, 0.0871568, 5.96046e-08, 1, 0, -0.0871568, -5.96046e-08, 0.996195, 0.0299663, 0.015, -0.00082176)
+transform = Transform3D(0.996195, 0, 0.0871569, 5.96046e-08, 1, 0, -0.087157, -5.96046e-08, 0.996195, 0.0299663, 0.015, -0.000821761)
 bone_name = "Plane.004"
 bone_idx = 7
 
@@ -1143,7 +1143,7 @@ transform = Transform3D(1, -2.27374e-13, -2.45088e-13, 0, 1, 1.45661e-12, 3.7252
 shape = SubResource("BoxShape3D_gb42y")
 
 [node name="Door" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
-transform = Transform3D(-0.0871568, -4.3545e-08, 0.996195, 1.77636e-15, 1, 1.03316e-07, -0.996195, -5.57949e-08, -0.0871568, 0.0299619, 0.015, -0.00087157)
+transform = Transform3D(-0.0871569, -4.3545e-08, 0.996195, 1.77636e-15, 1, 1.03316e-07, -0.996195, -5.57949e-08, -0.087157, 0.0299619, 0.015, -0.000871571)
 bone_name = "Door"
 bone_idx = 8
 
@@ -1152,7 +1152,7 @@ mesh = SubResource("ArrayMesh_oabxv")
 skeleton = NodePath("")
 
 [node name="Plane_002" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, -0.996195, -0.0871555, 0, 0.0871555, -0.996195, 5.96044e-10, 0.0399663, -0.000821747)
+transform = Transform3D(1, 0, 0, 0, -0.996195, -0.0871554, 0, 0.0871554, -0.996195, 5.96044e-10, 0.0399663, -0.000821746)
 bone_name = "Plane.002"
 bone_idx = 11
 
@@ -1178,7 +1178,7 @@ mesh = SubResource("ArrayMesh_v48ny")
 skeleton = NodePath("")
 
 [node name="Plane_005" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
-transform = Transform3D(1, -4.4409e-15, 4.26326e-14, -4.4409e-15, -1, 8.74228e-08, 3.55271e-14, -8.74228e-08, -1, 1.19209e-09, 0.0649239, -0.00169311)
+transform = Transform3D(1, -1.68754e-14, 3.55271e-14, -1.77636e-14, -1, 8.74228e-08, 2.84217e-14, -8.74228e-08, -1, 1.19209e-09, 0.0649239, -0.00169311)
 bone_name = "Plane.005"
 bone_idx = 14
 
@@ -1223,7 +1223,6 @@ shadow_enabled = true
 transform = Transform3D(0.200341, 0, 0, 0, 0.200341, 0, 0, 0, 0.200341, 16.4293, -1.95004, -12.0543)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Pillar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 freeze = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pillar/RigidBody3D"]
