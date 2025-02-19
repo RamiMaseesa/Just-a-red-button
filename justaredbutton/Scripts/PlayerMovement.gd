@@ -15,7 +15,7 @@ var t_bob = 0.0
 const BASE_FOV = 70
 const FOV_CHANGE = 1.5
 
-@onready var head = $Head
+@onready var body = $"."
 @onready var camera = $Head/Camera3D
 
 func _ready():
@@ -24,7 +24,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
+		body.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction: Vector3 = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction: Vector3 = (body.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if is_on_floor():
 		if direction:
@@ -79,4 +79,4 @@ func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
-	return pos + Vector3(0,1.5,0)
+	return pos

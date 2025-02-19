@@ -1389,6 +1389,7 @@ bones/17/scale = Vector3(1, 1, 1)
 
 [node name="Plane_001" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(1, 0, 0, 0, 1.50996e-07, 1, 0, -1, 1.50996e-07, 5.96046e-10, 5e-05, 0.01)
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871561, 0, 0.0871561, 0.996195, 5.96046e-10, -0.0099663, -0.00082175)
 bone_name = "Plane.001"
 bone_idx = 1
 
@@ -1405,6 +1406,7 @@ shape = SubResource("BoxShape3D_51smk")
 
 [node name="Plane_003" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.01995, 0.015, 0.01)
+transform = Transform3D(-0.996195, 0, 0.0871569, 5.96046e-08, 1, 0, -0.087157, -5.96046e-08, -0.996195, -0.0299663, 0.015, -0.00082176)
 bone_name = "Plane.003"
 bone_idx = 4
 
@@ -1422,6 +1424,7 @@ shape = SubResource("BoxShape3D_gb42y")
 
 [node name="Plane_004" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.01995, 0.015, 0.01)
+transform = Transform3D(0.996195, 0, 0.0871569, 5.96046e-08, 1, 0, -0.087157, -5.96046e-08, 0.996195, 0.0299663, 0.015, -0.000821761)
 bone_name = "Plane.004"
 bone_idx = 7
 
@@ -1439,6 +1442,7 @@ shape = SubResource("BoxShape3D_gb42y")
 
 [node name="Door" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(1, 0, 0, 1.77636e-15, 1, 4.37113e-08, 0, -4.37113e-08, 1, 0.02, 0.015, 0.01)
+transform = Transform3D(-0.0871569, -4.3545e-08, 0.996195, 1.77636e-15, 1, 1.03316e-07, -0.996195, -5.57949e-08, -0.087157, 0.0299619, 0.015, -0.000871571)
 bone_name = "Door"
 bone_idx = 8
 
@@ -1452,6 +1456,7 @@ skeleton = NodePath("")
 
 [node name="Plane_002" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(1, 0, 0, 0, 1.50996e-07, 1, 0, -1, 1.50996e-07, 5.96044e-10, 0.02995, 0.01)
+transform = Transform3D(1, 0, 0, 0, -0.996195, -0.0871554, 0, 0.0871554, -0.996195, 5.96044e-10, 0.0399663, -0.000821746)
 bone_name = "Plane.002"
 bone_idx = 11
 
@@ -1478,6 +1483,7 @@ skeleton = NodePath("")
 
 [node name="Plane_005" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(1, -1.69407e-20, -1.06581e-13, 7.19978e-21, 1, -8.74228e-08, 1.06581e-13, 8.74228e-08, 1, 1.19209e-09, 0.015, 0.01995)
+transform = Transform3D(1, -1.68754e-14, 3.55271e-14, -1.77636e-14, -1, 8.74228e-08, 2.84217e-14, -8.74228e-08, -1, 1.19209e-09, 0.0649239, -0.00169311)
 bone_name = "Plane.005"
 bone_idx = 14
 
@@ -1505,6 +1511,8 @@ pillarAnimation = NodePath("../Pillar/AnimationPlayer")
 
 [node name="TheBigReveal" type="Node" parent="."]
 script = ExtResource("12_v4rlt")
+[node name="RigidBody3D" type="RigidBody3D" parent="Pillar"]
+freeze = true
 
 [connection signal="animation_finished" from="Pillar/AnimationPlayer" to="CharacterBody3D/Head/CheckObjectInView" method="_on_animation_player_animation_finished"]
 [connection signal="screen_exited" from="Room/Armature/Skeleton3D/Door/VisibleOnScreenNotifier3D" to="CharacterBody3D/Head/CheckObjectInView" method="_on_visible_on_screen_notifier_3d_screen_exited"]
