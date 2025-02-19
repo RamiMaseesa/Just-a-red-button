@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://p1mjifwn0a1i"]
+[gd_scene load_steps=16 format=3 uid="uid://cywxmrk1d7iuf"]
 
 [ext_resource type="Texture2D" uid="uid://bx83kh6vwpi4o" path="res://Art/Materials/white_concrete-2K/2K-concrete_white-diffuse.jpg" id="1_re06w"]
 [ext_resource type="PackedScene" uid="uid://dyj2csyv0mnke" path="res://Prefabs/Player.tscn" id="2_ije5n"]

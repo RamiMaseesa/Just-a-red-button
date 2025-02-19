@@ -23,5 +23,5 @@ func _process(_delta: float) -> void:
 		_currentObject = null
 		cursor.visible = false
 	
-	if _currentObject != null and Input.is_action_just_pressed("Interact"): #Interact with interactable if it isn't null and action is Interact
+	if _currentObject != null and Input.is_action_just_pressed("Interact") and _currentObject.canBeInteractedWith: #Interact with interactable if it isn't null and action is Interact
 		_currentObject._Interact()
