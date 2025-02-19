@@ -1,12 +1,15 @@
-[gd_scene load_steps=76 format=4 uid="uid://brxc7l44qhwhe"]
+[gd_scene load_steps=81 format=4 uid="uid://brxc7l44qhwhe"]
 
 [ext_resource type="Texture2D" uid="uid://cqs5yndnyies6" path="res://Art/Sprites/Icon.png" id="1_gggdw"]
 [ext_resource type="Material" uid="uid://ba2yx240hpqpm" path="res://Materials/Rock/Rock.tres" id="1_iirlw"]
+[ext_resource type="Texture2D" uid="uid://da7ur2ij0qkwt" path="res://Art/Sprites/Cursor.png" id="1_j4cu6"]
 [ext_resource type="Texture2D" uid="uid://cak5ieyu14v0l" path="res://Art/Sprites/Outdoor.jpg" id="1_qnvs6"]
 [ext_resource type="Material" uid="uid://dkmwkm6ajjuh2" path="res://Materials/WoodFloor/WoodFloor.tres" id="2_0ir85"]
 [ext_resource type="Material" uid="uid://727h617h7ta1" path="res://Materials/Walls/Wall.tres" id="2_kibfk"]
-[ext_resource type="PackedScene" uid="uid://dyj2csyv0mnke" path="res://Prefabs/Player.tscn" id="9_040jm"]
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="2_x05e6"]
+[ext_resource type="Script" path="res://Scripts/InteractableCheck.gd" id="6_ugjpp"]
 [ext_resource type="Script" path="res://Scripts/Button.gd" id="10_em0ja"]
+[ext_resource type="Script" path="res://Scripts/CheckObjectInView.gd" id="10_s34j6"]
 [ext_resource type="Script" path="res://Scripts/IntroCutscene.gd" id="11_lywbi"]
 [ext_resource type="Script" path="res://Scripts/Events/TheBigReveal.gd" id="12_v4rlt"]
 
@@ -1056,6 +1059,11 @@ shadow_mesh = SubResource("ArrayMesh_cvspk")
 [sub_resource type="BoxShape3D" id="BoxShape3D_bemcl"]
 size = Vector3(0.0402679, 0.0298293, 0.001)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_arsca"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kdyq8"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1452,4 +1460,55 @@ pillarAnimation = NodePath("../Pillar/AnimationPlayer")
 [node name="TheBigReveal" type="Node" parent="."]
 script = ExtResource("12_v4rlt")
 
-[node name="CharacterBody3D2" parent="." instance=ExtResource("9_040jm")]
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51189, -0.921765, 1.09711)
+script = ExtResource("2_x05e6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_arsca")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_kdyq8")
+
+[node name="Head" type="Node3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D2/Head"]
+fov = 70.0
+
+[node name="Control" type="Control" parent="CharacterBody3D2/Head/Camera3D"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Cursor" type="TextureRect" parent="CharacterBody3D2/Head/Camera3D/Control"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_j4cu6")
+
+[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D2/Head/Camera3D" node_paths=PackedStringArray("cursor")]
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 2
+script = ExtResource("6_ugjpp")
+cursor = NodePath("../Control/Cursor")
+
+[node name="CheckObjectInView" type="Node" parent="CharacterBody3D2/Head/Camera3D" node_paths=PackedStringArray("object")]
+script = ExtResource("10_s34j6")
+object = NodePath("../../../../Room/Armature/Skeleton3D/Door/VisibleOnScreenNotifier3D")
+
+[connection signal="animation_finished" from="Pillar/AnimationPlayer" to="CharacterBody3D2/Head/Camera3D/CheckObjectInView" method="_on_animation_player_animation_finished"]
+[connection signal="screen_exited" from="Room/Armature/Skeleton3D/Door/VisibleOnScreenNotifier3D" to="CharacterBody3D2/Head/Camera3D/CheckObjectInView" method="_on_visible_on_screen_notifier_3d_screen_exited"]
