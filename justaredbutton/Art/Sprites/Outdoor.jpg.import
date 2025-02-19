@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqs5yndnyies6"
-path.s3tc="res://.godot/imported/Icon.png-ac2ae49fcdfbbf0d17c1e06afa73b18e.s3tc.ctex"
+uid="uid://cak5ieyu14v0l"
+path.s3tc="res://.godot/imported/Outdoor.jpg-b429c56bd9a406e2edb96e6e94018533.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/Icon.png"
-dest_files=["res://.godot/imported/Icon.png-ac2ae49fcdfbbf0d17c1e06afa73b18e.s3tc.ctex"]
+source_file="res://Art/Sprites/Outdoor.jpg"
+dest_files=["res://.godot/imported/Outdoor.jpg-b429c56bd9a406e2edb96e6e94018533.s3tc.ctex"]
 
 [params]
 
