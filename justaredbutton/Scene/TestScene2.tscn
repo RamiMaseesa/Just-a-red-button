@@ -1,15 +1,12 @@
-[gd_scene load_steps=81 format=4 uid="uid://brxc7l44qhwhe"]
+[gd_scene load_steps=76 format=4 uid="uid://brxc7l44qhwhe"]
 
 [ext_resource type="Texture2D" uid="uid://cqs5yndnyies6" path="res://Art/Sprites/Icon.png" id="1_gggdw"]
 [ext_resource type="Material" uid="uid://ba2yx240hpqpm" path="res://Materials/Rock/Rock.tres" id="1_iirlw"]
-[ext_resource type="Texture2D" uid="uid://da7ur2ij0qkwt" path="res://Art/Sprites/Cursor.png" id="1_j4cu6"]
 [ext_resource type="Texture2D" uid="uid://cak5ieyu14v0l" path="res://Art/Sprites/Outdoor.jpg" id="1_qnvs6"]
 [ext_resource type="Material" uid="uid://dkmwkm6ajjuh2" path="res://Materials/WoodFloor/WoodFloor.tres" id="2_0ir85"]
 [ext_resource type="Material" uid="uid://727h617h7ta1" path="res://Materials/Walls/Wall.tres" id="2_kibfk"]
-[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="2_x05e6"]
-[ext_resource type="Script" path="res://Scripts/InteractableCheck.gd" id="6_ugjpp"]
+[ext_resource type="PackedScene" uid="uid://dyj2csyv0mnke" path="res://Prefabs/Player.tscn" id="9_040jm"]
 [ext_resource type="Script" path="res://Scripts/Button.gd" id="10_em0ja"]
-[ext_resource type="Script" path="res://Scripts/CheckObjectInView.gd" id="10_s34j6"]
 [ext_resource type="Script" path="res://Scripts/IntroCutscene.gd" id="11_lywbi"]
 [ext_resource type="Script" path="res://Scripts/Events/TheBigReveal.gd" id="12_v4rlt"]
 
@@ -25,10 +22,6 @@ background_mode = 2
 sky = SubResource("Sky_tg0uw")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_arsca"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ey3k"]
 
 [sub_resource type="Animation" id="Animation_a2mth"]
 resource_name = "PillarEmerges"
@@ -1068,56 +1061,6 @@ size = Vector3(0.0402679, 0.0298293, 0.001)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5t88h")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.84388, -1.11361, 0.110282)
-script = ExtResource("2_x05e6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_arsca")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_4ey3k")
-
-[node name="Head" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, -0.291408)
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57268, 0)
-
-[node name="Control" type="Control" parent="CharacterBody3D/Head/Camera3D"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Cursor" type="TextureRect" parent="CharacterBody3D/Head/Camera3D/Control"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_j4cu6")
-
-[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/Head/Camera3D" node_paths=PackedStringArray("cursor")]
-target_position = Vector3(0, 0, -1.5)
-collision_mask = 2
-script = ExtResource("6_ugjpp")
-cursor = NodePath("../Control/Cursor")
-
-[node name="CheckObjectInView" type="Node" parent="CharacterBody3D/Head" node_paths=PackedStringArray("object")]
-script = ExtResource("10_s34j6")
-object = NodePath("../../../Room/Armature/Skeleton3D/Door/VisibleOnScreenNotifier3D")
-
 [node name="Pillar" type="Node3D" parent="."]
 transform = Transform3D(-8.75718e-09, 0, 0.200341, 0, 0.200341, 0, -0.200341, 0, -8.75718e-09, 0, -3.30418, 0)
 
@@ -1200,6 +1143,9 @@ skeleton = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_lhif8")
 }
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Pillar"]
+freeze = true
 
 [node name="Room" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -1389,7 +1335,6 @@ bones/17/scale = Vector3(1, 1, 1)
 
 [node name="Plane_001" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(1, 0, 0, 0, 1.50996e-07, 1, 0, -1, 1.50996e-07, 5.96046e-10, 5e-05, 0.01)
-transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871561, 0, 0.0871561, 0.996195, 5.96046e-10, -0.0099663, -0.00082175)
 bone_name = "Plane.001"
 bone_idx = 1
 
@@ -1406,7 +1351,6 @@ shape = SubResource("BoxShape3D_51smk")
 
 [node name="Plane_003" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.01995, 0.015, 0.01)
-transform = Transform3D(-0.996195, 0, 0.0871569, 5.96046e-08, 1, 0, -0.087157, -5.96046e-08, -0.996195, -0.0299663, 0.015, -0.00082176)
 bone_name = "Plane.003"
 bone_idx = 4
 
@@ -1424,7 +1368,6 @@ shape = SubResource("BoxShape3D_gb42y")
 
 [node name="Plane_004" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.01995, 0.015, 0.01)
-transform = Transform3D(0.996195, 0, 0.0871569, 5.96046e-08, 1, 0, -0.087157, -5.96046e-08, 0.996195, 0.0299663, 0.015, -0.000821761)
 bone_name = "Plane.004"
 bone_idx = 7
 
@@ -1442,7 +1385,6 @@ shape = SubResource("BoxShape3D_gb42y")
 
 [node name="Door" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(1, 0, 0, 1.77636e-15, 1, 4.37113e-08, 0, -4.37113e-08, 1, 0.02, 0.015, 0.01)
-transform = Transform3D(-0.0871569, -4.3545e-08, 0.996195, 1.77636e-15, 1, 1.03316e-07, -0.996195, -5.57949e-08, -0.087157, 0.0299619, 0.015, -0.000871571)
 bone_name = "Door"
 bone_idx = 8
 
@@ -1456,7 +1398,6 @@ skeleton = NodePath("")
 
 [node name="Plane_002" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
 transform = Transform3D(1, 0, 0, 0, 1.50996e-07, 1, 0, -1, 1.50996e-07, 5.96044e-10, 0.02995, 0.01)
-transform = Transform3D(1, 0, 0, 0, -0.996195, -0.0871554, 0, 0.0871554, -0.996195, 5.96044e-10, 0.0399663, -0.000821746)
 bone_name = "Plane.002"
 bone_idx = 11
 
@@ -1482,8 +1423,7 @@ mesh = SubResource("ArrayMesh_v48ny")
 skeleton = NodePath("")
 
 [node name="Plane_005" type="BoneAttachment3D" parent="Room/Armature/Skeleton3D"]
-transform = Transform3D(1, -1.69407e-20, -1.06581e-13, 7.19978e-21, 1, -8.74228e-08, 1.06581e-13, 8.74228e-08, 1, 1.19209e-09, 0.015, 0.01995)
-transform = Transform3D(1, -1.68754e-14, 3.55271e-14, -1.77636e-14, -1, 8.74228e-08, 2.84217e-14, -8.74228e-08, -1, 1.19209e-09, 0.0649239, -0.00169311)
+transform = Transform3D(1, -1.60936e-20, -9.9476e-14, 7.19978e-21, 1, -8.74228e-08, 9.9476e-14, 8.74228e-08, 1, 1.19209e-09, 0.015, 0.01995)
 bone_name = "Plane.005"
 bone_idx = 14
 
@@ -1511,8 +1451,5 @@ pillarAnimation = NodePath("../Pillar/AnimationPlayer")
 
 [node name="TheBigReveal" type="Node" parent="."]
 script = ExtResource("12_v4rlt")
-[node name="RigidBody3D" type="RigidBody3D" parent="Pillar"]
-freeze = true
 
-[connection signal="animation_finished" from="Pillar/AnimationPlayer" to="CharacterBody3D/Head/CheckObjectInView" method="_on_animation_player_animation_finished"]
-[connection signal="screen_exited" from="Room/Armature/Skeleton3D/Door/VisibleOnScreenNotifier3D" to="CharacterBody3D/Head/CheckObjectInView" method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[node name="CharacterBody3D2" parent="." instance=ExtResource("9_040jm")]
