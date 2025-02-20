@@ -56,6 +56,5 @@ collision_mask = 2
 script = ExtResource("3_nise8")
 cursor = NodePath("../Control/Cursor")
 
-[node name="CheckObjectInView" type="Node" parent="Head/Camera3D" node_paths=PackedStringArray("object")]
+[node name="CheckObjectInView" type="Node" parent="Head/Camera3D"]
 script = ExtResource("4_wkviu")
-object = NodePath("")

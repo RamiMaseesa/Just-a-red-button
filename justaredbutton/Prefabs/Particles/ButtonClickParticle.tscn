@@ -1,4 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dblvlqnj5fqnx"]
+[gd_scene load_steps=13 format=3 uid="uid://dblvlqnj5fqnx"]
+
+[ext_resource type="Script" path="res://Scripts/ButtonClickParticle.gd" id="1_esr0c"]
+[ext_resource type="AudioStream" uid="uid://bv61vbcgcsyhp" path="res://Art/Sound/SFX/buttonPress.wav" id="1_w6a6a"]
 
 [sub_resource type="Curve" id="Curve_s0r3m"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.747692, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -61,6 +64,7 @@ radial_segments = 8
 rings = 4
 
 [node name="ButtonClickParticle" type="Node3D"]
+script = ExtResource("1_esr0c")
 
 [node name="Lines" type="GPUParticles3D" parent="."]
 emitting = false
@@ -80,3 +84,6 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8bxkn")
 draw_pass_1 = SubResource("SphereMesh_8qcxr")
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_w6a6a")

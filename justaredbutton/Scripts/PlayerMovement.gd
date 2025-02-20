@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var speed
+var speed: float
 const WALK_SPEED = 5
 const SPRINT_SPEED = 10
 const JUMP_VELOCITY = 4.5
@@ -17,6 +17,8 @@ const FOV_CHANGE = 1.5
 
 @onready var body = $"."
 @onready var camera = $Head/Camera3D
+
+const DUST_PARTICLE = preload("res://Prefabs/Particles/DustParticle.tscn")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -37,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		add_child(DUST_PARTICLE.instantiate())
 
 	if Input.is_action_pressed("sprint"):
 		if is_on_floor():

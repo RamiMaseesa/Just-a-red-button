@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxwke8p51exn4"]
+[gd_scene load_steps=7 format=3 uid="uid://bxwke8p51exn4"]
 
 [ext_resource type="Texture2D" uid="uid://bd8bfr8w16je4" path="res://Art/Textures/cloud.png" id="1_8fyln"]
+[ext_resource type="Script" path="res://Scripts/DustParticle.gd" id="1_jxi2a"]
+[ext_resource type="AudioStream" uid="uid://drc7dicetmp77" path="res://Art/Sound/SFX/jumpSFX.wav" id="2_yud0s"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5g8fv"]
-emission_shape_scale = Vector3(3, 1, 3)
+emission_shape = 1
+emission_sphere_radius = 1.0
 angle_min = 1.07288e-05
 angle_max = 15.0
 direction = Vector3(0, 3, 0)
 initial_velocity_min = 0.2
-initial_velocity_max = 0.5
+initial_velocity_max = 0.4
 gravity = Vector3(0, -0.5, 0)
 scale_min = 0.1
 scale_max = 0.4
@@ -25,13 +28,16 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_havpd")
 
 [node name="DustParticle" type="Node3D"]
+script = ExtResource("1_jxi2a")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500934, -0.362225, 0.0294794)
 amount = 5
-lifetime = 2.0
 preprocess = 0.5
-speed_scale = 0.9
+speed_scale = 0.5
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_5g8fv")
 draw_pass_1 = SubResource("QuadMesh_clm5c")
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yud0s")
