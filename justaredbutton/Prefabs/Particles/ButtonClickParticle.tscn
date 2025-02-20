@@ -15,12 +15,13 @@ particle_flag_align_y = true
 spread = 180.0
 initial_velocity_min = 12.0
 initial_velocity_max = 14.0
+gravity = Vector3(0, 0, 0)
 linear_accel_min = -2.0
 linear_accel_max = -2.0
 damping_min = 2.0
 damping_max = 2.0
-scale_min = 0.2
-scale_max = 0.4
+scale_min = 0.1
+scale_max = 0.2
 scale_curve = SubResource("CurveTexture_in22g")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3lvxj"]
@@ -48,9 +49,9 @@ emission_sphere_radius = 1.0
 spread = 90.0
 initial_velocity_min = 2.0
 initial_velocity_max = 4.0
-gravity = Vector3(0, -5, 0)
-scale_min = 0.2
-scale_max = 0.4
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
 color = Color(0.947454, 0.206374, 0.248187, 1)
 color_ramp = SubResource("GradientTexture1D_qtlkk")
 
@@ -69,9 +70,7 @@ script = ExtResource("1_esr0c")
 [node name="Lines" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 7
-lifetime = 0.3
 one_shot = true
-speed_scale = 0.5
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8x5ya")
 draw_pass_1 = SubResource("CylinderMesh_t8mou")
@@ -79,7 +78,6 @@ draw_pass_1 = SubResource("CylinderMesh_t8mou")
 [node name="Balls" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 4
-lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8bxkn")
